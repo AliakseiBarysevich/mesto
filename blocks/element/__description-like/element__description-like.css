@@ -1,0 +1,13 @@
+.element__description-like {
+    min-width: 22px;
+    transition: opacity .6s;
+}
+
+.element__description-like:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+.element__description-like:active {
+    fill: #000;
+}
