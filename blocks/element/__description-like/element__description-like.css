@@ -7,7 +7,3 @@
     opacity: .6;
     cursor: pointer;
 }
-
-.element__description-like:active {
-    fill: #000;
-}
