@@ -7,6 +7,20 @@
     gap: 20px 17px;
 }
 
+@media screen and (max-width: 1050px) {
+    .elements {
+        max-width: 80%;
+        margin: 0 auto 60px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .elements {
+        max-width: 90%;
+        margin: 0 auto 54px;
+    }
+}
+
 @media screen and (max-width: 424px) {
     .elements {
         max-width: calc(100% - 19px * 2);
