@@ -6,7 +6,6 @@
     background-image: url(../../../images/pen.svg);
     background-repeat: no-repeat;
     background-position:center;
-    padding: 7px;
     grid-area: edit-button;
     transition: opacity .6s;
     display: flex;

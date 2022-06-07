@@ -2,9 +2,9 @@ let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let formElement = document.querySelector('.popup__form');
 let nameInput = document.querySelector('.popup__input_type_name');
-let jobInput = document.querySelector('.popup__input_type_occupation');
+let jobInput = document.querySelector('.popup__input_type_job');
 let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__occupation');
+let profileJob = document.querySelector('.profile__job');
 
 editButton.addEventListener('click', function () {
     popup.classList.add('popup_opened');

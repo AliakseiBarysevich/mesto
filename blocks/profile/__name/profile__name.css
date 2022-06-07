@@ -7,6 +7,15 @@
     grid-area: name;
     display: flex;
     align-self: baseline;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1050px) {
+    .profile__name {
+        font-size: 38px;
+    }
 }
 
 @media screen and (max-width: 424px) {
