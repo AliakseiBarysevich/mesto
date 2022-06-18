@@ -1,5 +1,7 @@
 .element {
     background-color: #fff;
     border-radius: 10px;
-    font-size: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

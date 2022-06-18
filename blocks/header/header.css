@@ -1,7 +1,7 @@
 .header {
     max-width: calc(100% - 200px * 2);
-    margin: 45px auto 40px;
-    padding-bottom: 41px;
+    margin: 0 auto;
+    padding: 45px 0 41px;
     border-bottom: 1px #545454 solid;
     display: flex;
     justify-content: flex-start;
@@ -11,23 +11,20 @@
 @media screen and (max-width: 1050px) {
     .header {
         max-width: 80%;
-        margin: 35px auto 42px;
-        padding-bottom: 38px;
+        padding: 35px 0 38px;
     }
 }
 
 @media screen and (max-width: 767px) {
     .header {
         max-width: 90%;
-        margin: 32px auto 42px;
-        padding-bottom: 35px;
+        padding: 32px 0 35px;
     }
 }
 
 @media screen and (max-width: 424px) {
     .header {
         max-width: 100%;
-        margin: 28px 0 42px;
-        padding-bottom: 32px;
+        padding: 28px 0 32px;
     }
 }
