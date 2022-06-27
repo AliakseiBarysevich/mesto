@@ -28,6 +28,26 @@
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 
+/* popup-add-button */
+
+@import url(../blocks/popup-add-button/popup-add-button.css);
+@import url(../blocks/popup-add-button/_opened/popup-add-button_opened.css);
+@import url(../blocks/popup-add-button/__container/popup-add-button__container.css);
+@import url(../blocks/popup-add-button/__heading/popup-add-button__heading.css);
+@import url(../blocks/popup-add-button/__form/popup-add-button__form.css);
+@import url(../blocks/popup-add-button/__input/popup-add-button__input.css);
+@import url(../blocks/popup-add-button/__submit-button/popup-add-button__submit-button.css);
+@import url(../blocks/popup-add-button/__close-button/popup-add-button__close-button.css);
+
+/* popup-full-size-picture */
+
+@import url(../blocks/popup-full-size-picture/popup-full-size-picture.css);
+@import url(../blocks/popup-full-size-picture/_opened/popup-full-size-picture_opened.css);
+@import url(../blocks/popup-full-size-picture/__container/popup-full-size-picture__container.css);
+@import url(../blocks/popup-full-size-picture/__image/popup-full-size-picture__image.css);
+@import url(../blocks/popup-full-size-picture/__caption/popup-full-size-picture__caption.css);
+@import url(../blocks/popup-full-size-picture/__close-button/popup-full-size-picture__close-button.css);
+
 /* elements */
 
 @import url(../blocks/elements/elements.css);
@@ -36,6 +56,7 @@
 
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__delete-button/element__delete-button.css);
 @import url(../blocks/element/__description-container/element__description-container.css);
 @import url(../blocks/element/__description-text/element__description-text.css);
 @import url(../blocks/element/__description-like/element__description-like.css);
