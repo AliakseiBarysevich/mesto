@@ -5,3 +5,9 @@
     position: absolute;
     bottom: -10;
 }
+
+@media screen and (max-width: 767px) {
+    .popup__image-caption {
+        max-width: 75vw;
+    }
+}

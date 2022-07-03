@@ -129,7 +129,7 @@ function addCard(placeNameValue, placeLinkValue) {
 
   const largeImagePopup = document.querySelector('.popup_type_large-image');
   const largeImage = largeImagePopup.querySelector('.popup__image');
-  const largeImageCaption = largeImagePopup.querySelector('.popup__caption');
+  const largeImageCaption = largeImagePopup.querySelector('.popup__image-caption');
   const closeButtonForLargeImagePopup = largeImagePopup.querySelector('.popup__close-button_type_large-image');
   const cardImage = element.querySelector('.element__image');
 
