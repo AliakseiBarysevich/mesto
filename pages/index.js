@@ -1,4 +1,4 @@
-// initialCards
+// initialCardsArray
 
 const initialCards = [
   {
@@ -30,13 +30,13 @@ const initialCards = [
 
 // editButton
 
-let editButton = document.querySelector('.profile__edit-button');
-let editButtonPopup = document.querySelector('.popup_type_edit-button');
-let formElementForEditButtonPopup = document.querySelector('.popup__form');
-let nameInput = document.querySelector('.popup__input_type_name');
-let jobInput = document.querySelector('.popup__input_type_job');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__job');
+const editButton = document.querySelector('.profile__edit-button');
+const editButtonPopup = document.querySelector('.popup_type_edit-button');
+const formElementForEditButtonPopup = document.querySelector('.popup__form');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -53,7 +53,7 @@ editButton.addEventListener('click', function () {
 nameInput.value = profileName.textContent;
 jobInput.value = profileJob.textContent;
 
-let closeButtonForEditButtonPopup = document.querySelector('.popup__close-button_type_edit-button');
+const closeButtonForEditButtonPopup = document.querySelector('.popup__close-button_type_edit-button');
 
 closeButtonForEditButtonPopup.addEventListener('click', function () {
   closePopup(editButtonPopup);
@@ -112,9 +112,11 @@ function deleteCard(deleteButton) {
 function addCard(placeNameValue, placeLinkValue) {
   const elementTemplate = document.querySelector('#element').content;
   const element = elementTemplate.querySelector('.element').cloneNode(true);
+  const cardImage = element.querySelector('.element__image');
 
   element.querySelector('.element__description-text').textContent = placeNameValue;
   element.querySelector('.element__image').src = placeLinkValue;
+  cardImage.alt = placeNameValue;
 
   const likeButton = element.querySelector('.element__description-like');
   const deleteButton = element.querySelector('.element__delete-button');
@@ -131,17 +133,16 @@ function addCard(placeNameValue, placeLinkValue) {
   const largeImage = largeImagePopup.querySelector('.popup__image');
   const largeImageCaption = largeImagePopup.querySelector('.popup__image-caption');
   const closeButtonForLargeImagePopup = largeImagePopup.querySelector('.popup__close-button_type_large-image');
-  const cardImage = element.querySelector('.element__image');
 
-cardImage.addEventListener('click', function () {
-openPopup(largeImagePopup);
-largeImage.src = placeLinkValue;
-largeImageCaption.textContent = placeNameValue;
-});
+  cardImage.addEventListener('click', function () {
+    openPopup(largeImagePopup);
+    largeImage.src = placeLinkValue;
+    largeImageCaption.textContent = placeNameValue;
+  });
 
-closeButtonForLargeImagePopup.addEventListener('click', function () {
-  closePopup(largeImagePopup);
-});
+  closeButtonForLargeImagePopup.addEventListener('click', function () {
+    closePopup(largeImagePopup);
+  });
 
   elements.prepend(element);
 
@@ -149,6 +150,8 @@ closeButtonForLargeImagePopup.addEventListener('click', function () {
   placeLinkInput.value = 'Ссылка на картинку';
 };
 
+//initialCards
+
 initialCards.forEach(function (item) {
-  addCard(item.name, item.link)
+  addCard(item.name, item.link);
 });
