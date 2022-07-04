@@ -73,8 +73,8 @@ formElementForEditButtonPopup.addEventListener('submit', formSubmitHandlerforEdi
 const addButton = document.querySelector('.profile__add-button');
 const addButtonPopup = document.querySelector('.popup_type_add-button');
 const closeButtonForAddButtonPopup = document.querySelector('.popup__close-button_type_add-button');
-const placeNameInput = document.querySelector('.popup__input-place-name_type_add-button');
-const placeLinkInput = document.querySelector('.popup__input-place-link_type_add-button');
+const placeNameInput = document.querySelector('.popup__input_type_place-name');
+const placeLinkInput = document.querySelector('.popup__input_type_place-link');
 const formElementForAddButton = document.querySelector('.popup__form_type_add-button');
 
 addButton.addEventListener('click', function () {
