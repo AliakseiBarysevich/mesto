@@ -1,6 +1,6 @@
 const editButton = document.querySelector('.profile__edit-button');
 const editProfilePopup = document.querySelector('.popup_type_edit-profile');
-const closeButtonForEditProfilePopup = document.querySelector('.popup__close-button_type_edit-profile');
+const closeEditProfilePopupButton = document.querySelector('.popup__close-button_type_edit-profile');
 const formElementForEditProfilePopup = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
@@ -8,20 +8,26 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const addCardButton = document.querySelector('.profile__add-button');
 const addCardPopup = document.querySelector('.popup_type_add-card');
-const closeButtonForAddCardPopup = document.querySelector('.popup__close-button_type_add-card');
+const closeAddCardPopupButton = document.querySelector('.popup__close-button_type_add-card');
 const placeNameInput = document.querySelector('.popup__input_type_place-name');
 const placeLinkInput = document.querySelector('.popup__input_type_place-link');
 const formElementForAddCardPopup = document.querySelector('.popup__form_type_add-card');
 const cardsContainer = document.querySelector('.elements');
-const elementTemplate = document.querySelector('#element').content;
-const element = elementTemplate.querySelector('.element');
+const cardTemplate = document.querySelector('#element').content;
+const card = cardTemplate.querySelector('.element');
 const largeImagePopup = document.querySelector('.popup_type_large-image');
 const largeImage = largeImagePopup.querySelector('.popup__image');
 const largeImageCaption = largeImagePopup.querySelector('.popup__image-caption');
-const closeButtonForLargeImagePopup = largeImagePopup.querySelector('.popup__close-button_type_large-image');
+const closeLargeImagePopupButton = largeImagePopup.querySelector('.popup__close-button_type_large-image');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+};
+
+function openEditProfilePopup(editProfilePopup) {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  openPopup(editProfilePopup);
 };
 
 function openLargeImagePopup(cardData) {
@@ -34,14 +40,14 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 };
 
-function handleFormSubmitForEditProfilePopup(evt) {
+function handleSubmitEditProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(editProfilePopup);
 }
 
-function handleFormSubmitForAddCardPopup(evt) {
+function handleSubmitAddCard(evt) {
   evt.preventDefault();
   const cardData = {
     name: placeNameInput.value,
@@ -56,12 +62,12 @@ function likeCard(likeButton) {
   likeButton.classList.toggle('element__description-like_active');
 };
 
-function deleteCard(elementToBeDeleted) {
-  elementToBeDeleted.remove();
+function deleteCard(cardToBeDeleted) {
+  cardToBeDeleted.remove();
 };
 
 function createNewCard(cardData) {
-  const newCard = element.cloneNode(true);
+  const newCard = card.cloneNode(true);
   const cardImage = newCard.querySelector('.element__image');
 
   newCard.querySelector('.element__description-text').textContent = cardData.name;
@@ -87,29 +93,26 @@ function createNewCard(cardData) {
 };
 
 editButton.addEventListener('click', function () {
-  nameInput.value = profileName.textContent;
-
-  jobInput.value = profileJob.textContent;
-  openPopup(editProfilePopup);
+  openEditProfilePopup(editProfilePopup);
 });
 
-closeButtonForEditProfilePopup.addEventListener('click', function () {
+closeEditProfilePopupButton.addEventListener('click', function () {
   closePopup(editProfilePopup);
 });
 
-formElementForEditProfilePopup.addEventListener('submit', handleFormSubmitForEditProfilePopup);
+formElementForEditProfilePopup.addEventListener('submit', handleSubmitEditProfile);
 
 addCardButton.addEventListener('click', function () {
   openPopup(addCardPopup)
 });
 
-closeButtonForAddCardPopup.addEventListener('click', function () {
+closeAddCardPopupButton.addEventListener('click', function () {
   closePopup(addCardPopup)
 });
 
-formElementForAddCardPopup.addEventListener('submit', handleFormSubmitForAddCardPopup);
+formElementForAddCardPopup.addEventListener('submit', handleSubmitAddCard);
 
-closeButtonForLargeImagePopup.addEventListener('click', function () {
+closeLargeImagePopupButton.addEventListener('click', function () {
   closePopup(largeImagePopup);
 });
 
