@@ -22,7 +22,10 @@ const closeLargeImagePopupButton = largeImagePopup.querySelector('.popup__close-
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keypress', closePopupOnQ);
 };
+
+//дадаў вышэй слухач document.addEventListener('keypress', closePopupOnQ);
 
 function openEditProfilePopup(editProfilePopup) {
   nameInput.value = profileName.textContent;
@@ -38,7 +41,10 @@ function openLargeImagePopup(cardData) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keypress', closePopupOnQ);
 };
+
+// дадаў вышэй слухач document.removeEventListener('keypress', closePopupOnQ);
 
 function handleSubmitEditProfile(evt) {
   evt.preventDefault();
@@ -100,14 +106,27 @@ closeEditProfilePopupButton.addEventListener('click', function () {
   closePopup(editProfilePopup);
 });
 
+editProfilePopup.addEventListener('click', closePopupOnOverlay);
+
 formElementForEditProfilePopup.addEventListener('submit', handleSubmitEditProfile);
 
 addCardButton.addEventListener('click', function () {
-  openPopup(addCardPopup)
+  openPopup(addCardPopup);
 });
 
 closeAddCardPopupButton.addEventListener('click', function () {
-  closePopup(addCardPopup)
+  closePopup(addCardPopup);
+  formElementForAddCardPopup.reset();
+});
+
+addCardPopup.addEventListener('click', function (e) {
+  closePopupOnOverlay(e);
+  formElementForAddCardPopup.reset();
+});
+
+addCardPopup.addEventListener('click', function (e) {
+  closePopupOnQ(e);
+  formElementForAddCardPopup.reset();
 });
 
 formElementForAddCardPopup.addEventListener('submit', handleSubmitAddCard);
@@ -116,7 +135,35 @@ closeLargeImagePopupButton.addEventListener('click', function () {
   closePopup(largeImagePopup);
 });
 
+largeImagePopup.addEventListener('click', closePopupOnOverlay);
+
 initialCards.forEach(function (item) {
   const newCard = createNewCard(item);
   cardsContainer.append(newCard);
 });
+
+
+// new functions
+
+const popups = document.querySelectorAll('.popup');
+
+function closePopupOnOverlay(e) {
+  if (e.target === e.currentTarget) {
+    closePopup(e.currentTarget);
+  }
+};
+
+/*
+popups.forEach((popup) => {
+  popup.addEventListener('click', closePopupOnOverlay);
+});
+*/
+
+function closePopupOnQ(e) {
+  if (e.code === 'KeyQ') {
+    popups.forEach((popup) => {
+      closePopup(popup);
+      console.log('popup closed');
+    })
+  }
+};
