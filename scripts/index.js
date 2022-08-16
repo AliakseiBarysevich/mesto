@@ -1,47 +1,49 @@
-const editButton = document.querySelector('.profile__edit-button');
-const editProfilePopup = document.querySelector('.popup_type_edit-profile');
-const closeEditProfilePopupButton = document.querySelector('.popup__close-button_type_edit-profile');
-const formElementForEditProfilePopup = document.querySelector('.popup__form');
+const editingButton = document.querySelector('.profile__edit-button');
+const editingProfilePopup = document.querySelector('.popup_type_edit-profile');
+//const closeEditingProfilePopupButton = document.querySelector('.popup__close-button_type_edit-profile');
+const formElementForEditingProfilePopup = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const addCardButton = document.querySelector('.profile__add-button');
-const addCardPopup = document.querySelector('.popup_type_add-card');
-const closeAddCardPopupButton = document.querySelector('.popup__close-button_type_add-card');
+const additionCardButton = document.querySelector('.profile__add-button');
+const additionCardPopup = document.querySelector('.popup_type_add-card');
+//const closeAdditionCardPopupButton = document.querySelector('.popup__close-button_type_add-card');
 const placeNameInput = document.querySelector('.popup__input_type_place-name');
 const placeLinkInput = document.querySelector('.popup__input_type_place-link');
-const formElementForAddCardPopup = document.querySelector('.popup__form_type_add-card');
+const formElementForAdditionCardPopup = document.querySelector('.popup__form_type_add-card');
+const additionCardPopupSubmitButton = additionCardPopup.querySelector('.popup__submit-button'); //тут дадаў зменную для кнопкі "сабміт" поп-апа, які дадае новую картку. Яна трэба, каб рабіць яе неактыўнай пры акдрыцці гэтага поп-апа (у additionCardButton.addEventListener).
 const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#element').content;
 const card = cardTemplate.querySelector('.element');
 const largeImagePopup = document.querySelector('.popup_type_large-image');
 const largeImage = largeImagePopup.querySelector('.popup__image');
 const largeImageCaption = largeImagePopup.querySelector('.popup__image-caption');
-const closeLargeImagePopupButton = largeImagePopup.querySelector('.popup__close-button_type_large-image');
+//const closeLargeImagePopupButton = largeImagePopup.querySelector('.popup__close-button_type_large-image');
 const popups = document.querySelectorAll('.popup');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  const inputs = popup.querySelectorAll('.popup__input');
+  /*const inputs = popup.querySelectorAll('.popup__input');
   inputs.forEach((input) => {
     input.classList.remove('popup__input_type_error');
   })
   const errors = popup.querySelectorAll('.popup__error');
   errors.forEach((error) => {
     error.classList.remove('popup__error_visible');
-  });
+  });*/
   document.addEventListener('keyup', closePopupOnEsc);
 };
 
-function openEditProfilePopup(editProfilePopup) {
+function openEditingProfilePopup(editingProfilePopup) {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  openPopup(editProfilePopup);
+  openPopup(editingProfilePopup);
 };
 
 function openLargeImagePopup(cardData) {
   largeImage.src = cardData.link;
+  largeImage.alt = cardData.name;
   largeImageCaption.textContent = cardData.name;
   openPopup(largeImagePopup);
 }
@@ -51,29 +53,33 @@ function closePopup(popup) {
   document.removeEventListener('keyup', closePopupOnEsc);
 };
 
-function closePopupOnOverlay(e) {
+/*function closePopupOnOverlay(e) {
   if (e.target === e.currentTarget) {
     closePopup(e.currentTarget);
   }
-};
+};*/
 
 function closePopupOnEsc(e) {
   if (e.code === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened'); //лепш шукаць тут, унутры функцыі, ці вынесці ў глабальную зону бачнасці? (здаецца, так называецца)
+    /* калі ставім пошук унунтры popups, то выдае наступную памылку: index.js:64 Uncaught TypeError: popups.querySelector is not a function
+    at HTMLDocument.closePopupOnEsc (index.js:64:32)*/
+    closePopup(popupOpened);
     console.log('popup closed');
-    popups.forEach((popup) => {
+    /*popups.forEach((popup) => {
       closePopup(popup);
-    });
+    });*/
   }
 };
 
-function handleSubmitEditProfile(evt) {
+function handleSubmitEditingProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(editProfilePopup);
+  closePopup(editingProfilePopup);
 }
 
-function handleSubmitAddCard(evt) {
+function handleSubmitAdditionCard(evt) {
   evt.preventDefault();
   const cardData = {
     name: placeNameInput.value,
@@ -81,7 +87,7 @@ function handleSubmitAddCard(evt) {
   }
   const newCard = createNewCard(cardData);
   cardsContainer.prepend(newCard);
-  closePopup(addCardPopup);
+  closePopup(additionCardPopup);
 }
 
 function likeCard(likeButton) {
@@ -118,38 +124,50 @@ function createNewCard(cardData) {
   return newCard;
 };
 
-editButton.addEventListener('click', function () {
-  openEditProfilePopup(editProfilePopup);
+//куды выносім перабор масіва метадам "фор іч" - да функцый ці да слухачоў?
+
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (e) => { 
+    if (e.target === e.currentTarget || e.target.classList.contains('popup__close-button')) { 
+      closePopup(popup); 
+    }; 
+  }); 
+}); 
+
+editingButton.addEventListener('click', function () {
+  openEditingProfilePopup(editingProfilePopup);
 });
 
-closeEditProfilePopupButton.addEventListener('click', function () {
-  closePopup(editProfilePopup);
+/*closeEditingProfilePopupButton.addEventListener('click', function () {
+  closePopup(editingProfilePopup);
+});*/
+
+/*editingProfilePopup.addEventListener('click', closePopupOnOverlay);*/
+
+formElementForEditingProfilePopup.addEventListener('submit', handleSubmitEditingProfile);
+
+additionCardButton.addEventListener('click', function () {
+  formElementForAdditionCardPopup.reset();
+  additionCardPopupSubmitButton.classList.add('popup__submit-button_disabled');
+  additionCardPopupSubmitButton.setAttribute('disabled', true);
+  openPopup(additionCardPopup);
 });
 
-editProfilePopup.addEventListener('click', closePopupOnOverlay);
+/*closeAdditionCardPopupButton.addEventListener('click', function () {
+  closePopup(additionCardPopup);
+});*/
 
-formElementForEditProfilePopup.addEventListener('submit', handleSubmitEditProfile);
-
-addCardButton.addEventListener('click', function () {
-  formElementForAddCardPopup.reset();
-  openPopup(addCardPopup);
-});
-
-closeAddCardPopupButton.addEventListener('click', function () {
-  closePopup(addCardPopup);
-});
-
-addCardPopup.addEventListener('click', function (e) {
+/*additionCardPopup.addEventListener('click', function (e) {
   closePopupOnOverlay(e);
-});
+});*/
 
-formElementForAddCardPopup.addEventListener('submit', handleSubmitAddCard);
+formElementForAdditionCardPopup.addEventListener('submit', handleSubmitAdditionCard);
 
-closeLargeImagePopupButton.addEventListener('click', function () {
+/*closeLargeImagePopupButton.addEventListener('click', function () {
   closePopup(largeImagePopup);
-});
+});*/
 
-largeImagePopup.addEventListener('click', closePopupOnOverlay);
+//largeImagePopup.addEventListener('click', closePopupOnOverlay);
 
 initialCards.forEach(function (item) {
   const newCard = createNewCard(item);
