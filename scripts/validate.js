@@ -47,9 +47,6 @@ const toggleButtonState = (inputList, buttonElement, config) => {
 
 const setEventListeners = (formElement, config) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-    /*const additionCardForm = document.querySelector(`${config.additionCardFormSelector}`);
-    const additionCardSubmitButton = document.querySelector(`${config.additionCardSubmitButtonSelector}`);
-    const additionCardFormInputList = Array.from(additionCardForm.querySelectorAll(`${config.inputSelector}`));*/
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
     toggleButtonState(inputList, buttonElement, config);
     inputList.forEach((inputElement) => {
