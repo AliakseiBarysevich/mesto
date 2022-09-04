@@ -7,14 +7,14 @@ export class Card {
     }
 
     _getTemplateCopy() {
-        const cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
-        return cardTemplate;
+        const cardTemplateCopy = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
+        return cardTemplateCopy;
     }
 
     _likeCard(likeButton) {
         likeButton.classList.toggle('element__description-like_active');
     }
-    
+
     _deleteCard() {
         this._card.remove();
     }
@@ -48,32 +48,3 @@ export class Card {
     }
 
 }
-
-
-
-
-// function createNewCard(cardData) {
-//     const newCard = card.cloneNode(true);
-//     const cardImage = newCard.querySelector('.element__image');
-
-//     newCard.querySelector('.element__description-text').textContent = cardData.name;
-//     cardImage.src = cardData.link;
-//     cardImage.alt = cardData.name;
-
-//     const likeButton = newCard.querySelector('.element__description-like');
-//     const deleteButton = newCard.querySelector('.element__delete-button');
-
-//     likeButton.addEventListener('click', function () {
-//         likeCard(likeButton);
-//     });
-
-//     deleteButton.addEventListener('click', function () {
-//         deleteCard(newCard);
-//     });
-
-//     cardImage.addEventListener('click', function () {
-//         openLargeImagePopup(cardData);
-//     });
-
-//     return newCard;
-// };

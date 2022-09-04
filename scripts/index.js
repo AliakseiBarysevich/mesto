@@ -1,7 +1,7 @@
 import { Card } from './Card.js';
-import { FormValidator } from './FormValidator';
-import { initialCards } from './cards.js';
-import { validationSettings } from './validate.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards } from './data.js';
+import { validationSettings } from './data.js';
 
 const editingButton = document.querySelector('.profile__edit-button');
 const editingProfilePopup = document.querySelector('.popup_type_edit-profile');
@@ -18,7 +18,6 @@ const formElementForAdditionCardPopup = document.querySelector('.popup__form_typ
 const additionCardPopupSubmitButton = additionCardPopup.querySelector('.popup__submit-button');
 const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#element').content;
-const card = cardTemplate.querySelector('.element');
 const largeImagePopup = document.querySelector('.popup_type_large-image');
 const largeImage = largeImagePopup.querySelector('.popup__image');
 const largeImageCaption = largeImagePopup.querySelector('.popup__image-caption');
@@ -134,7 +133,7 @@ popups.forEach((popup) => {
 popupForms.forEach((popupForm) => {
   const popupValidation = new FormValidator(validationSettings, popupForm);
   popupValidation.enableValidation();
-})
+});
 
 editingButton.addEventListener('click', function () {
   openEditingProfilePopup(editingProfilePopup);
@@ -152,7 +151,7 @@ additionCardButton.addEventListener('click', function () {
 formElementForAdditionCardPopup.addEventListener('submit', handleSubmitAdditionCard);
 
 initialCards.forEach(function (item) {
-  const newCard =  new Card (item, '#element', openLargeImagePopup);
+  const newCard = new Card(item, '#element', openLargeImagePopup);
   const createdCard = newCard.getCard();
   cardsContainer.append(createdCard);
 });
