@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: 'Костел францисканцев в Гольшанах',
       link: 'https://sun9-80.userapi.com/impg/_faCJ7XK-bRu27EgOQnrKbHFPjZcvB1T5xQqYQ/fKaqwx2StF4.jpg?size=960x975&quality=95&sign=44e7eabd677354384ac02c19011b600c&type=album'

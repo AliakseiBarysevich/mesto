@@ -6,7 +6,7 @@ export class Card {
         this._openLargeImagePopup = openLargeImagePopup;
     }
 
-    _getTemplate() {
+    _getTemplateCopy() {
         const cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
         return cardTemplate;
     }
@@ -16,44 +16,35 @@ export class Card {
     }
     
     _deleteCard() {
-        this.cardTemplate.remove();
+        this._card.remove();
     }
 
-    // _openLargeImagePopup() {
-    //     largeImage.src = this._image;
-    //     largeImage.alt = this._text;
-    //     largeImageCaption.textContent = this._text;
-    //     largeImagePopup.classList.add('popup_opened');
-    // }
-    
-    //Ещё раз напомню, класс -- изолированная сущность, которая ничего не знает про глобальные переменные и соседнюю разметку
-    //(исключение -- обращение к document для обработки нажатия на Esc)
-
-    _setEvenetListeners() {
-        const deleteButton = this.card.querySelector('.element__delete-button');
+    _setEventListeners() {
+        const deleteButton = this._card.querySelector('.element__delete-button');
         deleteButton.addEventListener('click', () => {
-            _deleteCard();
+            this._deleteCard();
         });
 
-        const likeButton = this.card.querySelector('.element__description-like');
+        const likeButton = this._card.querySelector('.element__description-like');
         likeButton.addEventListener('click', () => {
-            _likeCard(likeButton);
+            this._likeCard(likeButton);
         });
 
-        this._image.addEventListener('click', () => {
-            _openLargeImagePopup(this._text, this._image);
+        const cardImage = this._card.querySelector('.element__image');
+        cardImage.addEventListener('click', () => {
+            this._openLargeImagePopup(this._text, this._image);
         })
     };
 
     getCard() {
-        this.card = this._getTemplate();
-        this._setEvenetListeners();
+        this._card = this._getTemplateCopy();
+        this._setEventListeners();
 
-        this.card.querySelector('.element__image').src = this._image;
-        this.card.querySelector('.element__image').alt = this._image;
-        this.card.querySelector('.element__description-text').textContent = this._text;
+        this._card.querySelector('.element__image').src = this._image;
+        this._card.querySelector('.element__image').alt = this._image;
+        this._card.querySelector('.element__description-text').textContent = this._text;
 
-        return this.card;
+        return this._card;
     }
 
 }

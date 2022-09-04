@@ -1,3 +1,8 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator';
+import { initialCards } from './cards.js';
+import { validationSettings } from './validate.js';
+
 const editingButton = document.querySelector('.profile__edit-button');
 const editingProfilePopup = document.querySelector('.popup_type_edit-profile');
 const formElementForEditingProfilePopup = document.querySelector('.popup__form');
@@ -18,6 +23,7 @@ const largeImagePopup = document.querySelector('.popup_type_large-image');
 const largeImage = largeImagePopup.querySelector('.popup__image');
 const largeImageCaption = largeImagePopup.querySelector('.popup__image-caption');
 const popups = document.querySelectorAll('.popup');
+const popupForms = document.querySelectorAll('.popup__form');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -75,7 +81,7 @@ function handleSubmitAdditionCard(evt) {
   }
   const newCard = new Card(cardData, '#element', openLargeImagePopup);
   const generatedCard = newCard.getCard();
-  cardsContainer.prepend(newCageneratedCardrd);
+  cardsContainer.prepend(generatedCard);
   closePopup(additionCardPopup);
 }
 
@@ -113,11 +119,9 @@ function handleSubmitAdditionCard(evt) {
 //   return newCard;
 // };
 
-import { Card } from '../scripts/Card.js'; //дзе лепш рабіць імпарт?
-
-function createCard () {
-  const newCard = new Card ();
-}
+// function createCard () {
+//   const newCard = new Card ();
+// }
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (e) => {
@@ -126,6 +130,11 @@ popups.forEach((popup) => {
     };
   });
 });
+
+popupForms.forEach((popupForm) => {
+  const popupValidation = new FormValidator(validationSettings, popupForm);
+  popupValidation.enableValidation();
+})
 
 editingButton.addEventListener('click', function () {
   openEditingProfilePopup(editingProfilePopup);
