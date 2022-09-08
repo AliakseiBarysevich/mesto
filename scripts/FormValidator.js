@@ -2,6 +2,7 @@ export class FormValidator {
     constructor(config, formElement) {
         this._config = config;
         this._formElement = formElement;
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
     }
 
     _showInputError = (inputElement, errorMessage) => {
@@ -26,30 +27,35 @@ export class FormValidator {
         }
     };
 
-    _hasInvalidInput = (inputList) => {
-        return inputList.some((inputElement) => {
+    _hasInvalidInput = () => {
+        return this._inputList.some((inputElement) => {
             return !inputElement.validity.valid;
         })
     };
 
-    toggleButtonState = (inputList, buttonElement) => {
-        if (this._hasInvalidInput(inputList)) {
-            buttonElement.classList.add(this._config.inactiveButtonClass);
-            buttonElement.setAttribute('disabled', true);
+    toggleButtonState = () => {
+        if (this._hasInvalidInput(this._inputList)) {
+            this._buttonElement.classList.add(this._config.inactiveButtonClass);
+            this._buttonElement.disabled = 'true';
         } else {
-            buttonElement.classList.remove(this._config.inactiveButtonClass);
-            buttonElement.removeAttribute('disabled', true);
+            this._buttonElement.classList.remove(this._config.inactiveButtonClass);
+            this._buttonElement.removeAttribute('disabled');
         }
     };
 
+    //стварыў метад.
+    disableSubmitButton = () => {
+        this._buttonElement.classList.add('popup__submit-button_disabled');
+        this._buttonElement.disabled = 'true';
+    };
+
     _setEventListeners = () => {
-        const inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
-        const buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
-        this.toggleButtonState(inputList, buttonElement);
-        inputList.forEach((inputElement) => {
+        this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
+        this.toggleButtonState(this._inputList, this._buttonElement);
+        this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._isValid(inputElement);
-                this.toggleButtonState(inputList, buttonElement);
+                this.toggleButtonState(this._inputList, this._buttonElement);
             })
         })
     };
