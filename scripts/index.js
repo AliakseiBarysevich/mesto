@@ -87,13 +87,13 @@ popups.forEach((popup) => {
   });
 });
 
-initialiseEditingProfilePopup();
+initialiseEditingProfilePopup(); // вызов этой функции позволяет делать активной кнопку submit у editingProfilePopup при инициализации скрипта, без него кнопка при первой загрузке неактивна (http://joxi.ru/KAxEbxXcwPzYjr). 
 
-const formElementForEditingProfilePopupValidation = new FormValidator(validationSettings, formElementForEditingProfilePopup);
-formElementForEditingProfilePopupValidation.enableValidation();
+const profileFormValidator = new FormValidator(validationSettings, formElementForEditingProfilePopup);
+profileFormValidator.enableValidation();
 
-const formElementForAdditionCardPopupValidation = new FormValidator(validationSettings, formElementForAdditionCardPopup);
-formElementForAdditionCardPopupValidation.enableValidation();
+const additionCardFormValidator = new FormValidator(validationSettings, formElementForAdditionCardPopup);
+additionCardFormValidator.enableValidation();
 
 editingButton.addEventListener('click', function () {
   openEditingProfilePopup(editingProfilePopup);
@@ -103,7 +103,7 @@ formElementForEditingProfilePopup.addEventListener('submit', handleSubmitEditing
 
 additionCardButton.addEventListener('click', function () {
   formElementForAdditionCardPopup.reset();
-  formElementForAdditionCardPopupValidation.disableSubmitButton();
+  additionCardFormValidator.disableSubmitButton();
   openPopup(additionCardPopup);
 });
 

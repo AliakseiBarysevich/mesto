@@ -34,7 +34,7 @@ export class FormValidator {
     };
 
     toggleButtonState = () => {
-        if (this._hasInvalidInput(this._inputList)) {
+        if (this._hasInvalidInput()) {
             this._buttonElement.classList.add(this._config.inactiveButtonClass);
             this._buttonElement.disabled = 'true';
         } else {
@@ -43,7 +43,6 @@ export class FormValidator {
         }
     };
 
-    //стварыў метад.
     disableSubmitButton = () => {
         this._buttonElement.classList.add('popup__submit-button_disabled');
         this._buttonElement.disabled = 'true';
@@ -51,7 +50,7 @@ export class FormValidator {
 
     _setEventListeners = () => {
         this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
-        this.toggleButtonState(this._inputList, this._buttonElement);
+        this.toggleButtonState();
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._isValid(inputElement);
