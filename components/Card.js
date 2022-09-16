@@ -1,13 +1,11 @@
 export class Card {
-    // Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
-    // Эта функция должна открывать попап с картинкой при клике на карточку.
     constructor({data, handleCardClick}, cardTemplateSelector) {
         this._data = data;
         this._placeName = data.name;
         this._imageLink = data.link;
         this._cardTemplateSelector = cardTemplateSelector;
-        this._handleCardClick = handleCardClick; //прыватны метад ці не?
-        // this._openLargeImagePopup = openLargeImagePopup;
+        this._handleCardClick = handleCardClick;
+        // handleCardClick должна открывать попап с картинкой при клике на карточку.
     }
 
     _getTemplateCopy() {

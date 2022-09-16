@@ -1,8 +1,4 @@
-// Этот класс должен перезаписывать родительский метод open.
 // В методе open класса PopupWithImage нужно вставлять в попап картинку с src изображения и подписью к картинке.
-// наследует от Popup
-
-// ці трэба мне сюды імпартаваць клас Popup, які я наследую?
 import { Popup } from "./Popup.js";
 
 export class PopupWithImage extends Popup {

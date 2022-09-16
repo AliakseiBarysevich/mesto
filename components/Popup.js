@@ -1,4 +1,3 @@
-// отвечает за открытие и закрытие попапа
 export class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
@@ -14,15 +13,13 @@ export class Popup {
         document.removeEventListener('keyup', this._handleEscClose.bind(this));
     };
 
-    // содержит логику закрытия попапа клавишей Esc
+
     _handleEscClose(e) {
         if (e.code === 'Escape') {
-            // const popupOpened = document.querySelector('.popup_opened');
             this.close();
           }
     };
 
-    // добавляет слушатель клика иконке закрытия попапа. Модальное окно также закрывается при клике на затемнённую область вокруг формы
     setEventListeners() {
         this._popup.addEventListener('mousedown', (e) => {
             if (e.target === e.currentTarget || e.target.classList.contains('popup__close-button')) {
