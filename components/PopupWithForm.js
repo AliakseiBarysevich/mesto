@@ -5,7 +5,7 @@ export class PopupWithForm extends Popup {
     // Кроме селектора попапа принимает в конструктор колбэк сабмита формы.
     constructor(popupSelector, { handleFormSubmit }) {
         super(popupSelector);
-        this.handleFormSubmit = handleFormSubmit;
+        this._handleFormSubmit = handleFormSubmit;
         this.popupForm = this._popup.querySelector('.popup__form'); //як мне тут звяртацца да this._popup, які ёсць у класе Popup?
     };
 
@@ -35,10 +35,9 @@ export class PopupWithForm extends Popup {
 
             // добавим вызов функции _handleFormSubmit
             // передадим ей объект — результат работы _getInputValues
-            this.handleFormSubmit(this._getInputValues());
-
-            super.setEventListeners();
+            this._handleFormSubmit(this._getInputValues());
         })
+        super.setEventListeners();
     };
 
     // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.

@@ -6,12 +6,12 @@ export class Popup {
 
     open() {
         this._popup.classList.add('popup_opened');
-        document.addEventListener('keyup', this._handleEscClose);
+        document.addEventListener('keyup', this._handleEscClose.bind(this));
     };
 
     close() {
         this._popup.classList.remove('popup_opened');
-        document.removeEventListener('keyup', this._handleEscClose);
+        document.removeEventListener('keyup', this._handleEscClose.bind(this));
     };
 
     // содержит логику закрытия попапа клавишей Esc

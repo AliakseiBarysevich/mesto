@@ -12,7 +12,7 @@ export class Section {
         // });
    
         if (Array.isArray(this._renderedItems)) {
-        this._renderedItems.forEach(item => {
+        this._renderedItems.forEach((item) => {
             this._renderer(item);
         });
     } else {

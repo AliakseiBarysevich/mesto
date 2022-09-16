@@ -6,12 +6,16 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { Section } from '../components/Section.js';
 import { FormValidator } from '../components/FormValidator.js';
 
+// const userInfoSelectors = {
+//   currentUserNameSelector: '.profile__name',
+//   currentUserInfoSelector: '.profile__job'
+// };
 // import { Popup } from '../components/Popup.js'; яго ж не трэба сюды імпаратаваць, але ці трэба імпартаваць у класы PopupWithForm і PopupWithImage, у якіх я яго наследую?
 
 const currentUserInfo = new UserInfo({userNameSelector: '.profile__name', userInfoSelector: '.profile__job'});
 
 const initialCardsList = new Section({
-  data: initialCards,
+  items: initialCards,
   renderer: (cardData) => {
     const card = new Card({
       data: cardData,
@@ -39,7 +43,7 @@ const profileFormValidator = new FormValidator(validationSettings, editingProfil
 const additionCardPopup = new PopupWithForm('.popup_type_add-card', {
   handleFormSubmit: (cardData) => {
     const newCard = new Section({
-      data: cardData,
+      items: cardData,
       renderer: (cardData) => {
         const card = new Card({
           data: cardData,
@@ -65,7 +69,9 @@ initialCardsList.createView();
 editingProfilePopup.setEventListeners();
 additionCardPopup.setEventListeners();
 profileFormValidator.enableValidation();
+profileFormValidator.enableSubmitButton();
 additionCardFormValidator.enableValidation();
+largeImagePopup.setEventListeners();
 
 editingButton.addEventListener('click', () => {
   const userData = currentUserInfo.getUserInfo();
@@ -80,6 +86,7 @@ additionCardButton.addEventListener('click', function () {
   additionCardPopup.open();
 });
 
+console.log(currentUserInfo.getUserInfo());
 
 // const editingButton = document.querySelector('.profile__edit-button');
 // const editingProfilePopup = document.querySelector('.popup_type_edit-profile');
