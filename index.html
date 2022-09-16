@@ -33,12 +33,12 @@
                 <form class="popup__form popup__form_type_edit-profile" novalidate>
                     <div class="popup__input-container">
                         <input class="popup__input popup__input_type_name" id="name-input" type="text" minlength="2"
-                            maxlength="40" required>
+                            maxlength="40" name="name" required>
                         <span class="popup__error name-input-error"></span>
                     </div>
                     <div class="popup__input-container">
                         <input class="popup__input popup__input_type_job" id="job-input" type="text" minlength="2"
-                            maxlength="200" required>
+                            maxlength="200" name="info" required>
                         <span class="popup__error job-input-error"></span>
                     </div>
                     <button class="popup__submit-button popup__submit-button_type_edit-profile">Сохранить</button>
@@ -53,12 +53,12 @@
                 <form class="popup__form popup__form_type_add-card" novalidate>
                     <div class="popup__input-container">
                         <input class="popup__input popup__input_type_place-name" id="place-name-input" type="text"
-                            placeholder="Название" minlength="2" maxlength="30" required>
+                            placeholder="Название" minlength="2" maxlength="30" name="name" required>
                         <span class="popup__error place-name-input-error"></span>
                     </div>
                     <div class="popup__input-container">
                         <input class="popup__input popup__input_type_place-link" id="place-link-input" type="url"
-                            placeholder="Ссылка на картинку" required>
+                            placeholder="Ссылка на картинку" name="link" required>
                         <span class="popup__error place-link-input-error"></span>
                     </div>
                     <button class="popup__submit-button popup__submit-button_type_add-card">Сохранить</button>
@@ -98,7 +98,7 @@
         </article>
     </template>
 
-    <script type='module' src="./scripts/index.js"></script>
+    <script type='module' src="./pages/index.js"></script>
     <!-- <script src="./scripts/cards.js"></script>     -->
     <!-- <script src="./scripts/validate.js"></script> -->
     <!-- <script type='module' src="./scripts/Card.js"></script>

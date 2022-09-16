@@ -1,3 +1,21 @@
+export const editingButton = document.querySelector('.profile__edit-button');
+export const nameInput = document.querySelector('.popup__input_type_name');
+export const infoInput = document.querySelector('.popup__input_type_job');
+export const additionCardButton = document.querySelector('.profile__add-button');
+// export const editingProfilePopup = document.querySelector('.popup_type_edit-profile');
+// export const formElementForEditingProfilePopup = document.querySelector('.popup__form_type_edit-profile');
+// export const profileName = document.querySelector('.profile__name');
+// export const profileJob = document.querySelector('.profile__job');
+// export const additionCardPopup = document.querySelector('.popup_type_add-card');
+// export const placeNameInput = document.querySelector('.popup__input_type_place-name');
+// export const placeLinkInput = document.querySelector('.popup__input_type_place-link');
+// export const formElementForAdditionCardPopup = document.querySelector('.popup__form_type_add-card');
+// export const cardsContainer = document.querySelector('.elements');
+// export const largeImagePopup = document.querySelector('.popup_type_large-image');
+// export const largeImage = largeImagePopup.querySelector('.popup__image');
+// export const largeImageCaption = largeImagePopup.querySelector('.popup__image-caption');
+// export const popups = document.querySelectorAll('.popup');
+
 export const validationSettings = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -33,4 +51,3 @@ export const initialCards = [
         link: 'https://sun9-78.userapi.com/impg/WM1sTXcenc8O14CMIOjOnblQHD2yFb3Bq4uWUw/HoZUjILWWKs.jpg?size=960x1345&quality=95&sign=da5aa151b02ac5501e0c7c3948774878&type=album'
     }
 ];
-

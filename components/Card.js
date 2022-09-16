@@ -1,14 +1,17 @@
 export class Card {
-    constructor(data, templateSelector, openLargeImagePopup) {
+    // Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
+    // Эта функция должна открывать попап с картинкой при клике на карточку.
+    constructor({data, handleCardClick}, cardTemplateSelector) {
         this._data = data;
         this._placeName = data.name;
         this._imageLink = data.link;
-        this._templateSelector = templateSelector;
-        this._openLargeImagePopup = openLargeImagePopup;
+        this._cardTemplateSelector = cardTemplateSelector;
+        this._handleCardClick = handleCardClick; //прыватны метад ці не?
+        // this._openLargeImagePopup = openLargeImagePopup;
     }
 
     _getTemplateCopy() {
-        const cardTemplateCopy = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
+        const cardTemplateCopy = document.querySelector(this._cardTemplateSelector).content.querySelector('.element').cloneNode(true);
         return cardTemplateCopy;
     }
 
@@ -33,7 +36,7 @@ export class Card {
         });
 
         this._cardImage.addEventListener('click', () => {
-            this._openLargeImagePopup(this._data);
+            this._handleCardClick(this._data);
         })
     };
 
