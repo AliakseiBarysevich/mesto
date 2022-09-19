@@ -5,11 +5,11 @@ export class PopupWithForm extends Popup {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit; // Принимает в конструктор колбэк сабмита формы.
         this.popupForm = this._popup.querySelector('.popup__form');
+        this._inputList = this.popupForm.querySelectorAll('.popup__input');
     };
 
     // собирает данные всех полей формы
     _getInputValues() {
-        this._inputList = this._popup.querySelectorAll('.popup__input');
         this._formValues = {};
         this._inputList.forEach(input => {
             this._formValues[input.name] = input.value;
@@ -28,6 +28,12 @@ export class PopupWithForm extends Popup {
     close() {
         this.popupForm.reset();
         super.close();
-    }
+    };
+
+    setInputValues(data) {
+        this._inputList.forEach((input) =>{
+        input.value = data[input.name];
+        });
+      };
 
 }

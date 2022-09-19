@@ -1,6 +1,4 @@
 export const editingButton = document.querySelector('.profile__edit-button');
-export const nameInput = document.querySelector('.popup__input_type_name');
-export const infoInput = document.querySelector('.popup__input_type_job');
 export const additionCardButton = document.querySelector('.profile__add-button');
 
 export const validationSettings = {

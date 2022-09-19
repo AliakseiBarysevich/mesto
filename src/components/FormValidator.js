@@ -59,7 +59,7 @@ export class FormValidator {
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._isValid(inputElement);
-                this.toggleButtonState(this._inputList, this._buttonElement);
+                this.toggleButtonState();
             })
         })
     };
