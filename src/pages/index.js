@@ -1,3 +1,4 @@
+import './index.css';
 import { UserInfo } from '../components/UserInfo.js';
 import { infoInput, initialCards, nameInput, validationSettings, editingButton, additionCardButton } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
