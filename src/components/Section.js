@@ -1,16 +1,15 @@
 // отвечает за отрисовку элементов на странице
 export class Section {
-    constructor({ items, renderer }, containerSelector) {
-        this._renderedItems = items;
+    constructor( { renderer }, containerSelector) {
         this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
     }
 
     // Содержит публичный метод, который отвечает за отрисовку всех элементов.
     //Отрисовка каждого отдельного элемента должна осуществляться функцией renderer.
-    createView() {
-            this._renderedItems.forEach((item) => {
-                this._renderer(item);
+    createView(cardsArray) {
+        cardsArray.forEach((card) => {
+                this._renderer(card);
             });
     }
 

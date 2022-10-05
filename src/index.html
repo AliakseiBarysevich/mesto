@@ -17,7 +17,10 @@
     <main class="content">
 
         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Аватар профиля">
+            <div class="profile__avatar-container">
+                <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Аватар профиля">
+                <button class="profile__edit-avatar-button"></button>
+            </div>
             <div class="profile__info-container">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__edit-button"></button>
@@ -25,6 +28,21 @@
             </div>
             <button class="profile__add-button"></button>
         </section>
+
+        <div class="popup popup_type_edit-avatar">
+            <div class="popup__container">
+                <h3 class="popup__heading">Обновить аватар</h3>
+                <form class="popup__form popup__form_type_edit-avatar" novalidate>
+                    <div class="popup__input-container">
+                        <input class="popup__input popup__input_type_name" id="avatar-input" type="url" name="avatar"
+                            placeholder="Введите ссылку нового аватара" required>
+                        <span class="popup__error avatar-input-error"></span>
+                    </div>
+                    <button class="popup__submit-button popup__submit-button_type_edit-avatar">Сохранить</button>
+                </form>
+                <button class="popup__close-button popup__close-button_type_edit-avatar"></button>
+            </div>
+        </div>
 
         <div class="popup popup_type_edit-profile">
             <div class="popup__container">
@@ -37,7 +55,7 @@
                     </div>
                     <div class="popup__input-container">
                         <input class="popup__input popup__input_type_job" id="job-input" type="text" minlength="2"
-                            maxlength="200" name="info" required>
+                            maxlength="200" name="about" required>
                         <span class="popup__error job-input-error"></span>
                     </div>
                     <button class="popup__submit-button popup__submit-button_type_edit-profile">Сохранить</button>
@@ -63,6 +81,16 @@
                     <button class="popup__submit-button popup__submit-button_type_add-card">Сохранить</button>
                 </form>
                 <button class="popup__close-button popup__close-button_type_add-card"></button>
+            </div>
+        </div>
+
+        <div class="popup popup_type_confirm-deletion">
+            <div class="popup__container">
+                <h3 class="popup__heading">Вы уверены?</h3>
+                <form class="popup__form popup__form_type_confirm-deletion">
+                    <button class="popup__submit-button popup__submit-button_type_add-card">Да</button>
+                </form>
+                <button class="popup__close-button popup__close-button_type_confirm-deletion"></button>
             </div>
         </div>
 
@@ -92,7 +120,10 @@
             <button class="element__delete-button"></button>
             <div class="element__description-container">
                 <h2 class="element__description-text"></h2>
-                <button class="element__description-like"></button>
+                <div class="element__description-like-container">
+                    <button class="element__description-like"></button>
+                    <p class="element__description-likes-number">0</p>
+                </div>
             </div>
         </article>
     </template>

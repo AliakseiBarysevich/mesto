@@ -10,7 +10,9 @@
 /* profile */
 
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__edit-avatar-button/profile__edit-avatar-button.css);
 @import url(../blocks/profile/__info-container/profile__info-container.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__job/profile__job.css);
@@ -47,10 +49,14 @@
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__delete-button/element__delete-button.css);
+@import url(../blocks/element/__delete-button/_hidden/element__delete-button_hidden.css);
+@import url(../blocks/element/__delete-button/_visible/element__delete-button_visible.css);
 @import url(../blocks/element/__description-container/element__description-container.css);
 @import url(../blocks/element/__description-text/element__description-text.css);
+@import url(../blocks/element/__description-like-container/element__description-like-container.css);
 @import url(../blocks/element/__description-like/element__description-like.css);
 @import url(../blocks/element/__description-like/_active/element__description-like_active.css);
+@import url(../blocks/element/__description-likes-number/element__description-likes-number.css);
 
 /* footer */
 

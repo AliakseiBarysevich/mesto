@@ -2,6 +2,7 @@ export class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this._handleEscClose = this._handleEscClose.bind(this);
+        this._submitButton = this._popup.querySelector('.popup__submit-button');
     }
 
     open() {
@@ -14,6 +15,13 @@ export class Popup {
         document.removeEventListener('keyup', this._handleEscClose);
     };
 
+    loading(isLoading) {
+        if (isLoading) {
+            this._submitButton.textContent = 'Сохранение...';
+        } else {
+            this._submitButton.textContent = 'Сохранить';
+        }
+    }
 
     _handleEscClose(e) {
         if (e.code === 'Escape') {
