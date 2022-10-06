@@ -13,9 +13,12 @@ export class Section {
             });
     }
 
-    // Содержит публичный метод addItem, который принимает DOM-элемент и добавляет его в контейнер.
-    addItem(card) {
+    prependItem(card) {
         this._container.prepend(card);
     }
 
+    // method which appends new cards during initial rendering
+    appendItem(card) {
+        this._container.append(card);
+    }
 }

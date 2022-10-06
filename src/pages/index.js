@@ -17,7 +17,7 @@ const confirmingDeletionPopup = new PopupWithConfirmation('.popup_type_confirm-d
 
 const cardsSection = new Section({
   renderer: (cardData) => {
-    cardsSection.addItem(createCard(cardData));
+    cardsSection.appendItem(createCard(cardData));
   }
 },
   '.elements');
@@ -41,6 +41,7 @@ const updatingAvatarPopup = new PopupWithForm('.popup_type_edit-avatar', {
     api.editAvatar({ avatar: avatar })
       .then((res) => {
         currentUserInfo.setUserInfo(res.name, res.about, res.avatar, res._id);
+        updatingAvatarPopup.close();
       })
       .catch((err) => {
         console.log('Ошибка редактирования данных профиля', err);
@@ -48,7 +49,6 @@ const updatingAvatarPopup = new PopupWithForm('.popup_type_edit-avatar', {
       .finally(() => {
         updatingAvatarPopup.loading(false);
       });
-    updatingAvatarPopup.close();
   }
 });
 
@@ -60,6 +60,7 @@ const editingProfilePopup = new PopupWithForm('.popup_type_edit-profile', {
     api.updateUserInfo({ name: name, about: about })
       .then((res) => {
         currentUserInfo.setUserInfo(res.name, res.about, res.avatar, res._id);
+        editingProfilePopup.close();
       })
       .catch((err) => {
         console.log('Ошибка редактирования данных профиля', err);
@@ -67,7 +68,6 @@ const editingProfilePopup = new PopupWithForm('.popup_type_edit-profile', {
       .finally(() => {
         editingProfilePopup.loading(false);
       });
-    editingProfilePopup.close();
   }
 });
 
@@ -78,13 +78,13 @@ const additionCardPopup = new PopupWithForm('.popup_type_add-card', {
     additionCardPopup.loading(true);
     api.addNewCard(cardData)
       .then((cardDataFromServer) => {
-        cardsSection.addItem(createCard(cardDataFromServer));
+        cardsSection.prependItem(createCard(cardDataFromServer));
+        additionCardPopup.close();
       })
       .catch((err) => {
         console.log('Ошибка создания карточки', err);
       })
       .finally(() => {
-        additionCardPopup.close();
         additionCardPopup.loading(false);
       });
   }
@@ -126,12 +126,12 @@ function createCard(cardData) {
         api.deleteCard(card.getCardId())
           .then(() => {
             card.deleteCard();
+            confirmingDeletionPopup.close();
           })
           .catch((err) => {
             console.log(err);
           })
           .finally(() => {
-            confirmingDeletionPopup.close();
             confirmingDeletionPopup.loading(false);
           })
       })
